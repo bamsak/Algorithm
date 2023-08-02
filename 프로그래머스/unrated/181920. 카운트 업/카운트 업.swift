@@ -1,5 +1,5 @@
 import Foundation
 
 func solution(_ start:Int, _ end:Int) -> [Int] {
-    return Array(start...end).map{$0}
+    return Array(start...end)
 }
