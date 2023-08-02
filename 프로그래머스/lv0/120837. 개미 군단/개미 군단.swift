@@ -15,7 +15,7 @@ func solution(_ hp:Int) -> Int {
         worker = hp % 5 % 3
         
         result = general + soldier + worker
-    } else if hp % 5 == 0{
+    } else {
         return hp / 5
     }
     
