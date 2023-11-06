@@ -1,15 +1,19 @@
+import Foundation
+
 let nm =  readLine()!.split(separator: " ").map{ Int($0)! }
 let cards = readLine()!.split(separator: " ").map{ Int($0)! }
 
-var arr = [Int]()
+var card = -10000
 for i in 0..<(nm[0] - 2) {
     for j in (i + 1)..<(nm[0] - 1) {
         for r in (j + 1)..<(nm[0]) {
-            if cards[i] + cards[j] + cards[r] <= nm[1] {
-                arr.append(cards[i] + cards[j] + cards[r])
+            let new = cards[i] + cards[j] + cards[r]
+            if new <= nm[1] {
+                if nm[0] - card > nm[0] - new {
+                    card = new
+                }
             }
         }
     }
 }
-arr.sort(by: <)
-print("\(arr.last!)")
+print(card)
