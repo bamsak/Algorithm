@@ -9,12 +9,6 @@ for _ in 0..<n {
 }
 
 for money in moneys.reversed() {
-    if k < money {
-        continue
-    }
-    if k == 0 {
-        break
-    }
     count += k / money
     k = k % money
 }
