@@ -6,13 +6,6 @@ struct Queue<T> {
         input.isEmpty && output.isEmpty
     }
     
-    var first: T {
-        if output.isEmpty {
-            return input.first!
-        }
-        return output.last!
-    }
-    
     mutating func enqueue(_ newelement: T) {
         input.append(newelement)
     }
@@ -26,9 +19,7 @@ struct Queue<T> {
     }
 }
 
-let t = Int(readLine()!)!
-
-for _ in 0..<t {
+for _ in 0..<Int(readLine()!)! {
     let nm = readLine()!.split(separator: " ").map { Int($0)! }
     let (n, m) = (nm[0], nm[1])
     let nums = readLine()!.split(separator: " ").map { Int($0)! }
@@ -48,10 +39,10 @@ for _ in 0..<t {
             if sorted.last! > value.prioty {
                 queue.enqueue(value)
                 continue
-            } else {
-                count += 1
-                break
             }
+            
+            count += 1
+            break
         }
         
         if value.prioty == sorted.last! {
