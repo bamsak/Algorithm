@@ -11,15 +11,17 @@ for _ in 0..<m {
 }
 
 for i in 1...n {
-    edges[i] = edges[i].sorted()
+    edges[i] = edges[i].sorted(by: >)
 }
 
 var count = 0
 var result = [Int](repeating: 0, count: n + 1)
+var stack = [r]
 
-func dfs(_ vertex: Int) {
+while stack.isEmpty == false {
+    let vertex = stack.removeLast()
     if visited[vertex] == true {
-        return
+        continue
     }
     visited[vertex] = true
     count += 1
@@ -27,9 +29,8 @@ func dfs(_ vertex: Int) {
     
     for edge in edges[vertex] {
         if visited[edge] == false {
-            dfs(edge)
+            stack.append(edge)
         }
     }
 }
-dfs(r)
-result[1...n].forEach { print($0, terminator: "\n") }
+print(result[1...].map { "\($0)"}.joined(separator: "\n"))
