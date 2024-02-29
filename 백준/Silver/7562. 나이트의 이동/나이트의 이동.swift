@@ -32,16 +32,13 @@ for _ in 0..<Int(readLine()!)! {
     let my = [1, -1, 1, -1, 2, -2, 2, -2]
     
     var result = 0
+    var check = false
     
     chessBoard[start[1]][start[0]] = true
     
     while queue.isEmpty == false {
+        if check { break }
         let coord = queue.dequeue()
-        
-        if coord.x == destination[0] && coord.y == destination[1] {
-            result = coord.count
-            break
-        }
         
         for j in 0..<mx.count {
             let newX = coord.x + mx[j]
@@ -49,7 +46,12 @@ for _ in 0..<Int(readLine()!)! {
             
             if newX < 0 || newY < 0 || newX >= i || newY >= i { continue }
             if chessBoard[newY][newX] == true { continue }
-            
+            if newX == destination[0] && newY == destination[1] {
+                result = coord.count + 1
+                check = true
+                break
+            }
+        
             chessBoard[newY][newX] = true
             queue.enqueue((newX, newY, coord.count + 1))
         }
