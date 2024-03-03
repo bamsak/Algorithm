@@ -4,8 +4,8 @@ var result = [Int](repeating: 0, count: n)
 
 for i in 0..<n {
     var count = 0
-    for j in 0..<n {
-        if result[j] != 0 { continue }
+    
+    for j in 0..<n where result[j] == 0 {
         if count == line[i] {
             result[j] = i + 1
             break
