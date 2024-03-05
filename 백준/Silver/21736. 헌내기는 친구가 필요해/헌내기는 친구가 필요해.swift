@@ -66,15 +66,12 @@ while queue.isEmpty == false {
             continue
         }
         
-        if campus[newY][newX] == "O" {
-            visited[newY][newX] = true
-            queue.enqueue((newX, newY))
-            continue
+        if campus[newY][newX] == "P" {
+            count += 1
         }
         
         queue.enqueue((newX, newY))
         visited[newY][newX] = true
-        count += 1
     }
 }
 
