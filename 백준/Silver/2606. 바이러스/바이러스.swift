@@ -12,18 +12,16 @@ for _ in 0..<v {
     connects[input[1]].append(input[0])
 }
 
-var stack = [1]
-visited[1] = true
-
-while stack.isEmpty == false {
-    let vertex = stack.removeLast()
+func dfs(vertex: Int) {
+    if visited[vertex] == true { return }
+    visited[vertex] = true
     for connect in connects[vertex] {
         if visited[connect] == false {
-            visited[connect] = true
-            stack.append(connect)
+            dfs(vertex: connect)
             count += 1
         }
     }
 }
 
+dfs(vertex: 1)
 print(count)
