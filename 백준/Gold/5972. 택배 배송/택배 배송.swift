@@ -64,7 +64,6 @@ let nm = readLine()!.split(separator: " ").map { Int($0)! }
 let (n, m) = (nm[0], nm[1])
 
 var farms = Array(repeating: Array(repeating: (farm: 0, cow: 0), count: 0), count: n + 1)
-var visited = Array(repeating: false, count: n + 1)
 
 for _ in 0..<m {
     let abc = readLine()!.split(separator: " ").map { Int($0)! }
@@ -83,17 +82,16 @@ result[1] = 0
 heap.enheap((1, 0))
 
 while heap.isEmpty == false {
-    guard let now = heap.deheap() else { break }
-    
-    if visited[now.farm] == true { continue }
-    visited[now.farm] = true
+    let now = heap.deheap()!
+    if result[now.farm] < now.cow { continue }
     
     for next in farms[now.farm] {
-        if visited[next.farm] == false && result[next.farm] > result[now.farm] + next.cow {
-            result[next.farm] = result[now.farm] + next.cow
-            heap.enheap((next.farm, result[next.farm]))
+        let new = now.cow + next.cow
+        
+        if new < result[next.farm] {
+            result[next.farm] = new
+            heap.enheap((next.farm, new))
         }
     }
 }
-
 print(result[n])
