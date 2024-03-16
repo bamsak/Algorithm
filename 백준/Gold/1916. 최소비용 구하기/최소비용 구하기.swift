@@ -76,6 +76,7 @@ weight[start] = 0
 while true {
     guard let info = heap.deheap() else { break }
     if info.w > weight[info.d] { continue }
+    if info.d == destination { break }
     
     for city in cities[info.d] {
         let newWeight = city.w + info.w
