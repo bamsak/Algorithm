@@ -5,7 +5,7 @@ while true {
     let (w, h) = (wh[0], wh[1])
     
     var map = Array(repeating: Array(repeating: 0, count: 0), count: h)
-    var visited = Array(repeating: Array(repeating: false, count: w), count: h)
+
     for i in 0..<h {
         map[i] = readLine()!.split(separator: " ").map { Int($0)! }
     }
@@ -19,13 +19,12 @@ while true {
     
     for y in 0..<h {
         for x in 0..<w {
-            if map[y][x] == 1 && visited[y][x] == false {
+            if map[y][x] == 1 {
                 stack.append((x, y))
                 
                 while stack.isEmpty == false {
                     let coord = stack.removeLast()
-                    if visited[coord.y][coord.x] { continue }
-                    visited[coord.y][coord.x] = true
+                    map[coord.y][coord.x] = 0
                     
                     for i in 0..<mx.count {
                         let newX = coord.x + mx[i]
@@ -34,7 +33,6 @@ while true {
                         if newX < 0 || newY < 0 || newX >= w || newY >= h {
                             continue
                         }
-                        if visited[newY][newX] { continue }
                         if map[newY][newX] == 0 { continue }
                         stack.append((newX, newY))
                     }
