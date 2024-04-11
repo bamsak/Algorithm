@@ -1,24 +1,27 @@
-let S = readLine()!.map { String($0) }
+var S = readLine()!.map { String($0) }
 
-var zero = [String]()
-var one = [String]()
+var zero = 0
+var one = 0
 
 for s in S {
     if s == "0" {
-        zero.append(s)
+        zero += 1
         continue
     }
-    one.append(s)
+    one += 1
 }
 
-var result = ""
+zero /= 2
+one /= 2
 
-for i in 0..<zero.count / 2 {
-    result += zero[i]
+for _ in 0..<zero {
+    guard let i = S.lastIndex(of: "0") else { continue }
+    S.remove(at: i)
 }
 
-for i in 0..<one.count / 2 {
-    result += one[i]
+for _ in 0..<one {
+    guard let i = S.firstIndex(of: "1") else { continue }
+    S.remove(at: i)
 }
 
-print(result)
+print(S.joined())
