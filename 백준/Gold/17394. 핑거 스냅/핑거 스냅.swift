@@ -26,9 +26,9 @@ for _ in 0..<Int(readLine()!)! {
     var che = Array(repeating: true, count: 100_001)
     che[0] = false
     che[1] = false
-    for i in 2...100_000 {
+    for i in 2...50_000 {
         if !che[i] { continue }
-        for j in stride(from: i * i, through: 100_000, by: i) {
+        for j in stride(from: i * 2, through: 100_000, by: i) {
             che[j] = false
         }
     }
@@ -62,5 +62,6 @@ for _ in 0..<Int(readLine()!)! {
             queue.enqueue((new, now.count + 1))
         }
     }
+
     print(result)
 }
