@@ -22,14 +22,11 @@ struct Queue<T> {
 let ab = readLine()!.split(separator: " ").map { Int($0)! }
 let (a, b) = (ab[0], ab[1])
 
-var visited = Array(repeating: false, count: b + 1)
-
 var result = -1
 
 var queue = Queue<(num: Int, count: Int)>()
 
 queue.enqueue((a, 0))
-visited[a] = true
 
 while !queue.isEmpty {
     let current = queue.dequeue()
@@ -39,19 +36,12 @@ while !queue.isEmpty {
         break
     }
     
-    let temp = [Int("\(current.num)1")!, current.num * 2]
+    if current.num * 2 <= b {
+        queue.enqueue((current.num * 2, current.count + 1))
+    }
     
-    for i in 0..<temp.count {
-        let new = temp[i]
-        
-        if new > b {
-            continue
-        }
-        if visited[new] {
-            continue
-        }
-        visited[new] = true
-        queue.enqueue((new, current.count + 1))
+    if Int("\(current.num)1")! <= b {
+        queue.enqueue((Int("\(current.num)1")!, current.count + 1))
     }
 }
 print(result)
