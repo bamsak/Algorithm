@@ -1,0 +1,1 @@
+readLine()!.map { Int(String($0))! }.sorted(by: >).forEach{print($0, terminator: "")}
