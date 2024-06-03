@@ -11,7 +11,6 @@ for _ in 0..<m {
     edges[v].append(u)
 }
 
-var stack = [(node: Int, depth: Int)]()
 var result = Array(repeating: -1, count: n + 1)
 result[r] = 0
 
