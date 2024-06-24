@@ -5,10 +5,9 @@ var jewels = [Int]()
 for _ in 0..<m {
     jewels.append(Int(readLine()!)!)
 }
-jewels.sort()
 
 var left = 1
-var right = jewels.last!
+var right = jewels.max()!
 
 while left <= right {
     let mid = (left + right) / 2
