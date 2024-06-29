@@ -56,15 +56,12 @@ for _ in 0..<n {
 }
 
 var count = 0
+
 for _ in 0..<t {
     guard let value = heap.deheap() else { break }
-    if value < h { 
+    if value < h || value == 1 {
         heap.enheap(value)
         break
-    }
-    if value == 1 {
-        heap.enheap(1)
-        continue
     }
     let new = value / 2
     heap.enheap(new)
