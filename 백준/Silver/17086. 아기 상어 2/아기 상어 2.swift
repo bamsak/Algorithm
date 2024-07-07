@@ -23,7 +23,6 @@ let nm = readLine()!.split(separator: " ").map { Int($0)! }
 let (n, m) = (nm[0], nm[1])
 
 var space = Array(repeating: Array(repeating: 0, count: 0), count: n)
-//var distance = Array(repeating: Array(repeating: Int.max, count: m), count: n)
 var visited = Array(repeating: Array(repeating: false, count: m), count: n)
 
 for i in 0..<n {
