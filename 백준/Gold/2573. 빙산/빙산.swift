@@ -32,13 +32,12 @@ for i in 0..<n {
 }
 
 var queue = Queue<(x: Int, y: Int)>()
-
 var year = 0
 
 while true {
     var count = 0
     var visited = Array(repeating: Array(repeating: false, count: m), count: n)
-    var removeArr = Array(repeating: Array(repeating: 0, count: m), count: n)
+    var temp = iceberg
     
     for y in 0..<n {
         for x in 0..<m where iceberg[y][x] != 0 && !visited[y][x] {
@@ -56,13 +55,23 @@ while true {
                         continue
                     }
                     
-                    if visited[newY][newX] || iceberg[newY][newX] == 0 { continue }
+                    if visited[newY][newX] { continue }
                     
-                    queue.enqueue((newX, newY))
-                    visited[newY][newX] = true
+                    if iceberg[newY][newX] > 0 {
+                        queue.enqueue((newX, newY))
+                        visited[newY][newX] = true
+                        continue
+                    }
+                    
+                    if temp[current.y][current.x] > 0 {
+                        temp[current.y][current.x] -= 1
+                        continue
+                    }
+                    
                 }
             }
             count += 1
+            iceberg = temp
         }
     }
     
@@ -73,23 +82,6 @@ while true {
     if count == 0 {
         print(0)
         break
-    }
-    
-    for y in 0..<n {
-        for x in 0..<m where iceberg[y][x] != 0 {
-            for i in 0..<dx.count {
-                let newX = x + dx[i]
-                let newY = y + dy[i]
-                
-                if iceberg[newY][newX] != 0 { continue }
-                removeArr[y][x] += 1
-            }
-        }
-    }
-    for y in 0..<n {
-        for x in 0..<m where iceberg[y][x] != 0 {
-            iceberg[y][x] = iceberg[y][x] - removeArr[y][x] < 0 ? 0 : iceberg[y][x] - removeArr[y][x]
-        }
     }
 
     year += 1
