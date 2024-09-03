@@ -32,8 +32,10 @@ var count = 0
 while !queue.isEmpty {
     let current = queue.dequeue()
     
+    if current.time > weight[k] { break }
+    
     if current.x == k {
-        weight[k] = min(weight[k], current.time)
+        weight[k] = current.time
         count += 1
     }
     
