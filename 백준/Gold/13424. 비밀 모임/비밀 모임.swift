@@ -65,6 +65,9 @@ for _ in 0..<Int(readLine()!)! {
     
     var heap = Heap<(node: Int, weight: Int)>(<)
     
+    var result = 0
+    var distance = Int.max
+    
     for start in 1...n {
         heap.enheap((start, 0))
         weights[start][start] = 0
@@ -85,20 +88,16 @@ for _ in 0..<Int(readLine()!)! {
                 }
             }
         }
-    }
-    
-    var result = 0
-    var distance = Int.max
-    
-    for i in 1...n {
+        
         var sum = 0
         
         for num in nums {
-            sum += weights[i][num]
+            sum += weights[start][num]
         }
+        
         if distance > sum {
             distance = sum
-            result = i
+            result = start
         }
     }
     print(result)
