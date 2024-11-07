@@ -1,0 +1,1 @@
+print(Int(readLine()!)! % 2 == 1 ? "SK" : "CY")
