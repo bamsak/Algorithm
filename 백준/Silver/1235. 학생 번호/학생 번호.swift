@@ -7,7 +7,7 @@ for _ in 0..<n {
 var result = 100
 let temp = nums[0]
 
-for i in 0..<temp.count {
+for i in (0..<temp.count).reversed() {
   var foo = Set<String>()
   let str = temp[i...].joined()
   foo.insert(str)
@@ -17,7 +17,8 @@ for i in 0..<temp.count {
   }
   
   if foo.count == nums.count {
-    result = min(result, temp.count - i)
+    result = temp.count - i
+    break
   }
 }
 print(result)
